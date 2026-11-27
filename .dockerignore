@@ -1,0 +1,9 @@
+*
+!Dockerfile
+!README.md
+!LICENSE
+!pyproject.toml
+!requirements.lock
+!doomsday_checker/
+doomsday_checker/**
+!doomsday_checker/**/*.py

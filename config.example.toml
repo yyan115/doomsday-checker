@@ -1,0 +1,35 @@
+[watch]
+title = "Doomsday"
+state_path = "state.db"
+
+[schedule]
+timezone = "Asia/Singapore"
+trailer_minutes = 20
+# Optional weekday restriction:
+# busy_from = "09:00"
+# busy_until = "17:00"
+
+[seats]
+prefer_right = false
+notify_outside_schedule = true
+shaw_premium_halls = ["LUMRG", "LUMR", "PREM"]
+gv_premium_halls = ["Gold Class"]
+
+[seats.good]
+rows = [0.35, 0.80]
+columns = [0.30, 0.75]
+
+[seats.okay]
+rows = [0.25, 0.90]
+columns = [0.20, 0.85]
+
+[sources]
+shaw_access = "browser"
+gv_enabled = true
+gv_access = "listings"
+gv_movie_slugs = [
+    "marvel-studios-avengers-doomsday",
+    "marvel-studios-avengers-endgame-x-doomsday-marathon",
+]
+gv_popcorn_path = "avengers-doomsday/movie/21530"
+# chromium_executable = "/path/to/chromium"

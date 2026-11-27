@@ -1,0 +1,40 @@
+x-container: &container
+  restart: unless-stopped
+  init: true
+  read_only: true
+  cap_drop: [ALL]
+  security_opt:
+    - no-new-privileges:true
+  tmpfs:
+    - /tmp:mode=1777
+
+services:
+  watcher:
+    <<: *container
+    build:
+      context: .
+      target: watcher
+    user: "${CHECKER_UID:-1000}:${CHECKER_GID:-1000}"
+    stop_signal: SIGINT
+    stop_grace_period: 30s
+    depends_on:
+      browser:
+        condition: service_healthy
+    environment:
+      SHAW_BROWSER_WS_URL: ws://browser:3000/
+    volumes:
+      - ./config.local.toml:/config/config.toml:ro,z
+      - ./.env:/config/.env:ro,z
+      - ./data:/data:z
+
+  browser:
+    <<: *container
+    build:
+      context: .
+      target: browser
+    shm_size: 256m
+    healthcheck:
+      test: ["CMD", "python", "-c", "import socket; socket.create_connection(('127.0.0.1', 3000), 2).close()"]
+      interval: 5s
+      timeout: 3s
+      retries: 5

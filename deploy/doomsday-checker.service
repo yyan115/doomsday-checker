@@ -1,0 +1,13 @@
+[Unit]
+Description=Singapore Cinema Showtime Watcher
+After=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/path/to/doomsday-checker
+ExecStart="/path/to/doomsday-checker/.venv/bin/python" -m doomsday_checker.main
+Restart=on-failure
+RestartSec=30
+
+[Install]
+WantedBy=default.target

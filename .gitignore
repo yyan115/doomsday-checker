@@ -1,0 +1,16 @@
+.env
+/.env.*
+/config.local.toml
+/state.db
+/state.db-*
+/data/
+/.browser-profile/
+/PLAN.md
+/fixtures/
+/.venv/
+/build/
+/dist/
+*.egg-info/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
